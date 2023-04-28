@@ -79,6 +79,7 @@ Dependencies
 * **IntelliJ IDEA**: This is the IDE (integrated development environment) used to create the application.
     * Build System: IntelliJ
     * JDK: corretto-17, Amazon Correto version 17.0.6
+* **pgAdmin 4**
 * ERD Tool: https://www.lucidchart.com/
 * Spring Initializer: https://start.spring.io/
 * JWT secret generator: https://www.grc.com/passwords.htm
