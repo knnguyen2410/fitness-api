@@ -157,6 +157,7 @@ ERD Here: https://lucid.app/lucidchart/3753e7a2-3081-4937-93bb-c93f2846fcf2/edit
     - [Spring Boot ToDo Lab](https://git.generalassemb.ly/java-interapt-3-13-2023/spring-boot-todo-lab)
     - [JAVA API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
     - [Spring Framework Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/)
+    - many to many relationships: https://www.baeldung.com/jpa-many-to-many
 
 * Acknowledgements:
     - Suresh Sigera 

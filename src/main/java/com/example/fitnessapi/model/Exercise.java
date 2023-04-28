@@ -3,6 +3,7 @@ package com.example.fitnessapi.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity // indicates that this class is referencing a table
 @Table(name = "exercises") // database table name
@@ -36,6 +37,10 @@ public class Exercise {
     @JoinColumn(name = "user_id")
     @JsonIgnore // don't want user information to be included in workout info
     private User user;
+
+    // Many exercises can belong to many workouts
+    @ManyToMany(mappedBy = "exerciseList")
+    List<Workout> workoutList;
 
     // default (no-arg) constructor
     public Exercise(){}
