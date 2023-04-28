@@ -1,15 +1,36 @@
 package com.example.fitnessapi.model;
 
+import javax.persistence.*;
+
+@Entity // indicates that this class is referencing a table
+@Table(name = "exercises") // database table name
 public class Exercise {
+
+    // class variables
+    @Id // this is our PK (primary key)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // gives PK the next unused integer
+    @Column
     private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private Integer sets;
+
+    @Column
     private Integer reps;
+
+    @Column
     private Integer duration;
 
+    // default (no-arg) constructor
     public Exercise(){}
 
+    // constructor
     public Exercise(Long id, String name, String description, Integer sets, Integer reps, Integer duration) {
         this.id = id;
         this.name = name;
@@ -19,6 +40,7 @@ public class Exercise {
         this.duration = duration;
     }
 
+    // getters and setters
     public Long getId() {
         return id;
     }
@@ -67,6 +89,7 @@ public class Exercise {
         this.duration = duration;
     }
 
+    // toString method
     @Override
     public String toString() {
         return "Exercise{" +
