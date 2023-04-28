@@ -33,9 +33,9 @@ public class Workout {
 
     // Many workouts can have many exercises
     @ManyToMany
-    @JoinTable(name = "workout_exercise",
-            joinColumns = @JoinColumn(name = "workout_id"),
-            inverseJoinColumns = @JoinColumn(name = "exercise_id"))
+    @JoinTable(name = "workout_exercise", // creates a joined table
+            joinColumns = @JoinColumn(name = "workout_id"), // grabs foreign key from workout table
+            inverseJoinColumns = @JoinColumn(name = "exercise_id")) // grabs foreign key from exercise table
     List<Exercise> exerciseList;
 
     // default (no-arg) constructor

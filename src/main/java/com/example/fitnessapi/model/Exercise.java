@@ -39,7 +39,7 @@ public class Exercise {
     private User user;
 
     // Many exercises can belong to many workouts
-    @ManyToMany(mappedBy = "exerciseList")
+    @ManyToMany(mappedBy = "exerciseList") // indicates the inverse relationship
     List<Workout> workoutList;
 
     // default (no-arg) constructor
