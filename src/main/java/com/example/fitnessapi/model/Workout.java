@@ -1,16 +1,24 @@
 package com.example.fitnessapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity // indicates that this class is referencing a table
 @Table(name = "workouts") // database table name
 public class Workout {
 
     // class variables
+    @Id // this is our PK (primary key)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // gives PK the next unused integer
+    @Column
     private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private Integer length;
 
     // default (no-arg) constructor
