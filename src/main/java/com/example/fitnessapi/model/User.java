@@ -1,8 +1,11 @@
 package com.example.fitnessapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity // indicates that this class is referencing a table
 @Table(name = "users") // table name we'll see is pgAdmin4
@@ -23,6 +26,12 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
     private String password;
+
+    // outline class relationships as seen in ERD
+    // one user can have many workouts
+    @OneToMany(mappedBy = "user", orphanRemoval = true) // orphanRemoval removes the workout from database if we deleted it from a user
+    @LazyCollection(LazyCollectionOption.FALSE) // all workouts will be eagerly loaded (all data is retrieved together from the database)
+    private List<Workout> workoutList;
 
     // default (no-arg) constructor
     public User(){}
