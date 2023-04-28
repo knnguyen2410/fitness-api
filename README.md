@@ -83,6 +83,9 @@ Dependencies
 * ERD Tool: https://www.lucidchart.com/
 * Spring Initializer: https://start.spring.io/
 * JWT secret generator: https://www.grc.com/passwords.htm
+* Markdown Table Generator: https://www.tablesgenerator.com/markdown_tables
+  * Found by Rachel Ehrlich
+
 ---
 ## Features
 Project requirements: https://git.generalassemb.ly/java-interapt-3-13-2023/springboot-mini-project
