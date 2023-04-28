@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class User {
 
     // class variables
-
     @Id // this is our PK (primary key)
     @GeneratedValue(strategy = GenerationType.IDENTITY) // gives PK the next unused integer
     @Column
