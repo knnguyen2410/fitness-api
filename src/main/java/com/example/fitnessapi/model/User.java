@@ -83,17 +83,7 @@ public class User {
         this.password = password;
     }
 
-    // toString method
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
+    // getters and setters for class relationships
     public List<Workout> getWorkoutList() {
         return workoutList;
     }
@@ -108,5 +98,16 @@ public class User {
 
     public void setExerciseList(List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

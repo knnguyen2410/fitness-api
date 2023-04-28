@@ -104,18 +104,7 @@ public class Exercise {
         this.duration = duration;
     }
 
-    // toString method
-    @Override
-    public String toString() {
-        return "Exercise{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", sets=" + sets +
-                ", reps=" + reps +
-                ", duration=" + duration +
-                '}';
-    }
+    // getters and setters for class relationships
 
     public User getUser() {
         return user;
@@ -131,5 +120,18 @@ public class Exercise {
 
     public void setWorkoutList(List<Workout> workoutList) {
         this.workoutList = workoutList;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", sets=" + sets +
+                ", reps=" + reps +
+                ", duration=" + duration +
+                '}';
     }
 }

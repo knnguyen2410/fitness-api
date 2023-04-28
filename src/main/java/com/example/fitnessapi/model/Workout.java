@@ -82,16 +82,7 @@ public class Workout {
         this.length = length;
     }
 
-    // toString method
-    @Override
-    public String toString() {
-        return "Workout{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", length=" + length +
-                '}';
-    }
+    // getters and setters for class relationships
 
     public User getUser() {
         return user;
@@ -107,5 +98,16 @@ public class Workout {
 
     public void setExerciseList(List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Workout{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", length=" + length +
+                '}';
     }
 }
