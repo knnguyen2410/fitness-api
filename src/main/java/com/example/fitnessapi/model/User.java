@@ -93,4 +93,20 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public List<Workout> getWorkoutList() {
+        return workoutList;
+    }
+
+    public void setWorkoutList(List<Workout> workoutList) {
+        this.workoutList = workoutList;
+    }
+
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
+    }
+
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
+    }
 }
