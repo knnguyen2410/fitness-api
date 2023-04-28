@@ -28,10 +28,16 @@ public class User {
     private String password;
 
     // outline class relationships as seen in ERD
+
     // one user can have many workouts
     @OneToMany(mappedBy = "user", orphanRemoval = true) // orphanRemoval removes the workout from database if we deleted it from a user
     @LazyCollection(LazyCollectionOption.FALSE) // all workouts will be eagerly loaded (all data is retrieved together from the database)
     private List<Workout> workoutList;
+
+    // one user can have many exercises
+    @OneToMany(mappedBy = "user", orphanRemoval = true) // orphanRemoval removes the workout from database if we deleted it from a user
+    @LazyCollection(LazyCollectionOption.FALSE) // all workouts will be eagerly loaded (all data is retrieved together from the database)
+    private List<Exercise> exerciseList;
 
     // default (no-arg) constructor
     public User(){}

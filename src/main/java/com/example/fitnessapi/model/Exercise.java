@@ -1,5 +1,7 @@
 package com.example.fitnessapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity // indicates that this class is referencing a table
@@ -26,6 +28,14 @@ public class Exercise {
 
     @Column
     private Integer duration;
+
+    // outline class relationships as seen in ERD
+
+    // many exercises can belong to one user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore // don't want user information to be included in workout info
+    private User user;
 
     // default (no-arg) constructor
     public Exercise(){}
