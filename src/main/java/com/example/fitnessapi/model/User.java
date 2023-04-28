@@ -1,5 +1,7 @@
 package com.example.fitnessapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity // indicates that this class is referencing a table
@@ -18,6 +20,7 @@ public class User {
     @Column
     private String userName;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
     private String password;
 
