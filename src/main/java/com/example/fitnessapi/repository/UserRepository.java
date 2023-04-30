@@ -1,4 +1,4 @@
-package com.example.fitnessapi.model.repository;
+package com.example.fitnessapi.repository;
 
 import com.example.fitnessapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
