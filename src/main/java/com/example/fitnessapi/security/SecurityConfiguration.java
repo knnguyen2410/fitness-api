@@ -3,15 +3,19 @@ package com.example.fitnessapi.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.context.WebApplicationContext;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true) // this security configuration applies to entire app configuration
@@ -93,4 +97,19 @@ public class SecurityConfiguration {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
+
+    /**
+     * myUserDetails returns the current logged-in user's details as an object.
+     * @return the user's details as a MyUserDetails object.
+     */
+    @Bean
+    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public MyUserDetails myUserDetails() {
+        return (MyUserDetails) SecurityContextHolder
+                .getContext() // returns the object that is stored in a thread-local storage
+                .getAuthentication()
+                .getPrincipal(); // returns UserDetails object containing details of currently logged-in user
+
+    }
+
 }
