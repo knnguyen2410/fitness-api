@@ -1,6 +1,5 @@
 package com.example.fitnessapi.controller;
 
-import com.example.fitnessapi.exception.InformationExistException;
 import com.example.fitnessapi.model.Workout;
 import com.example.fitnessapi.service.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,12 @@ public class WorkoutController {
         this.workoutService = workoutService;
     }
 
+    /**
+     * createWorkout uses the createWorkout method from the workoutService
+     * to create a workout for a user
+     * @param workoutObject contains the details of the new workout we want to make
+     * @return calls upon the createWorkout method from the workoutService
+     */
     // (POST) As a user, I can create a new workout
     // http://localhost:9092/api/workouts/
     @PostMapping(path = "/workouts/")
@@ -27,6 +32,11 @@ public class WorkoutController {
         return workoutService.createWorkout(workoutObject);
     }
 
+    /**
+     * getWorkouts uses the getWorkouts method from workoutService
+     * to get a list of a user's workouts
+     * @return calls upon the getWorkouts method from the workoutService
+     */
     // (GET) As a user, I can see a list of all my workouts
     // http://localhost:9092/api/workouts/
     @GetMapping(path = "/workouts/")
@@ -34,6 +44,12 @@ public class WorkoutController {
         return workoutService.getWorkouts();
     }
 
+    /**
+     * getWorkout uses the getWorkout method from workoutService
+     * to update a get a user's specific workout
+     * @param workoutId is the workout we want to get
+     * @return calls upon the getWorkout method from the workoutService
+     */
     // (GET) As a user, I can see a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
     @GetMapping(path = "/workouts/{workoutId}/")
@@ -41,6 +57,13 @@ public class WorkoutController {
         return workoutService.getWorkout(workoutId);
     }
 
+    /**
+     * updateWorkout uses the updateWorkout method from workoutService
+     * to update a user's specific workout
+     * @param workoutId is the workout we want to update
+     * @param workoutObject contains the details that we want to update to
+     * @return calls upon the updateWorkout method from workoutService
+     */
     // (PUT) As a user, I can update a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
     @PutMapping(path = "/workouts/{workoutId}/")
@@ -48,6 +71,12 @@ public class WorkoutController {
         return workoutService.updateWorkout(workoutId, workoutObject);
     }
 
+    /**
+     * deleteWorkout uses the deleteWorkout method from workoutService
+     * to delete a user's workout
+     * @param workoutId is the workout we want to delete
+     * @return calls upon the deleteWorkout method from workoutService
+     */
     // (DELETE) As a user, I can delete a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
     @DeleteMapping(path = "/workouts/{workoutId}/")

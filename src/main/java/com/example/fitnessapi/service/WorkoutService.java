@@ -32,6 +32,12 @@ public class WorkoutService {
         return userDetails.getUser();
     }
 
+    /**
+     * createWorkout takes in a workoutObject and returns a new workout.
+     * If the workout name already exists, throw an exception
+     * @param workoutObject is what we want to create
+     * @return the workout object
+     */
     // (POST) As a user, I can create a new workout
     // http://localhost:9092/api/workouts/
     public Workout createWorkout(Workout workoutObject){
@@ -44,6 +50,11 @@ public class WorkoutService {
         }
     }
 
+    /**
+     * getWorkouts goes to the endpoint and returns a list of all workouts for the logged-in user.
+     * If the user doesn't have any workouts, throw an exception.
+     * @return a list of workouts.
+     */
     // (GET) As a user, I can see a list of all my workouts
     // http://localhost:9092/api/workouts/
     public List<Workout> getWorkouts(){
@@ -55,6 +66,12 @@ public class WorkoutService {
         }
     }
 
+    /**
+     * getWorkout returns a single workout for the user based on the user id.
+     * If the workout id doesn't exist, throw an error.
+     * @param workoutId is the workout we're looking for
+     * @return the workout
+     */
     // (GET) As a user, I can see a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
     public Optional<Workout> getWorkout(Long workoutId){
@@ -66,6 +83,13 @@ public class WorkoutService {
         }
     }
 
+    /**
+     * updateWorkout updates a certain workout with the workoutObject's details.
+     * If the workout id doesn't exist, throw an error
+     * @param workoutId is the workout we want to update
+     * @param workoutObject contains the details that we want to update to
+     * @return the updated workout
+     */
     // (PUT) As a user, I can update a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
     public Workout updateWorkout(Long workoutId, Workout workoutObject) {
@@ -81,6 +105,12 @@ public class WorkoutService {
         }
     }
 
+    /**
+     * deleteWorkout deletes a certain workout that the user has.
+     * If the workout id doesn't exist, throw an error.
+     * @param workoutId is the workout we want to delete
+     * @return a message to the user that the workout has been successfully deleted
+     */
     // (DELETE) As a user, I can delete a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
     public String deleteWorkout(Long workoutId) {
