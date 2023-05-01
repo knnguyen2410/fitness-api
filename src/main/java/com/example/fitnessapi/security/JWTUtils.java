@@ -35,4 +35,18 @@ public class JWTUtils {
                 .signWith(SignatureAlgorithm.HS256, jwtSecret) // comes from @value
                 .compact();
     }
+
+    /**
+     * getUserNameFromJwtToken takes the jwt string and
+     * This method runs multiple times (for each subsequent user request).
+     * Once the server receives the token, the server looks at the token payload (subject),
+     * and returns user information.
+     * @param token - this is the jwt we generated
+     * @return the subject of the jwt
+     */
+    public String getUserNameFromJwtToken(String token) {
+        return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).getBody().getSubject();
+    }
+
+
 }
