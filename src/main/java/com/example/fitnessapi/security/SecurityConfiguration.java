@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -79,4 +80,17 @@ public class SecurityConfiguration {
         return authConfig.getAuthenticationManager();
     }
 
+    /**
+     * authenticationProvider uses myUserDetailsService and passwordEncoder
+     * to return an instance of the DaoAuthenticationProvider.
+     * The DaoAuthenticationProvider uses the custom myUserDetailsService service to get the user information from the database.
+     * @return an authentication object that will contain the fully populated object including the authorization details
+     */
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(myUserDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
 }
