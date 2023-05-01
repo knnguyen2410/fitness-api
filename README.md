@@ -142,8 +142,8 @@ Exercise:
 ## Diagram
 
 Here is my Java Classes Diagram, which provides a high-level overview of the structure of the API.
+![Screenshot 2023-05-01 at 6.22.50 AM.png](Screenshot%202023-05-01%20at%206.22.50%20AM.png)
 
-![Screenshot 2023-05-01 at 6.22.50 AM.png](.idea%2FScreenshot%202023-05-01%20at%206.22.50%20AM.png)
 ERD can also be found: https://lucid.app/lucidchart/3753e7a2-3081-4937-93bb-c93f2846fcf2/edit?viewport_loc=-55%2C-21%2C2765%2C1558%2C0_0&invitationId=inv_41329a38-d753-495b-b50f-7934f2f3528d
 
 User - Workout relationship: one-to-many
