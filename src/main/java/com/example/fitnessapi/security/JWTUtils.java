@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -48,5 +49,27 @@ public class JWTUtils {
         return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).getBody().getSubject();
     }
 
-
+    /**
+     * validateJwtToken looks at all the properties of the jwt to validate it.
+     * This method runs multiple times (for each subsequent user request).
+     * @param authToken this is the jwt we're trying to validate
+     * @return if the jwt is valid
+     */
+    public boolean validateJwtToken(String authToken) {
+        try {
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            return true;
+        } catch (SecurityException e) {
+            logger.log(Level.SEVERE, "Invalid JWT signature: {}", e.getMessage());
+        } catch (MalformedJwtException e) {
+            logger.log(Level.SEVERE, "Invalid JWT token: {}", e.getMessage());
+        } catch (ExpiredJwtException e) {
+            logger.log(Level.SEVERE, "JWT token is expired: {}", e.getMessage());
+        } catch (UnsupportedJwtException e) {
+            logger.log(Level.SEVERE, "JWT token is unsupported: {}", e.getMessage());
+        } catch (IllegalArgumentException e) {
+            logger.log(Level.SEVERE, "JWT claims string is empty: {}", e.getMessage());
+        }
+        return false;
+    }
 }
