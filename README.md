@@ -15,6 +15,7 @@ I wanted to combine my love of coding and health to create a fitness API.
 This is an application that helps users track their workouts and exercises. 
 Users are able to create multiple workouts, each consisting of multiple exercises. 
 The exercises and workouts can also be updated to stay current with users' fitness goals.
+
 ---
 ## Technologies Used
 
