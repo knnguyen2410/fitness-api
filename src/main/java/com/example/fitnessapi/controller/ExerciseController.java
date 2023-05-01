@@ -21,11 +21,6 @@ public class ExerciseController {
 // (POST) As a user, I can create a new exercise for a certain workout
 // http://localhost:9092/api/workouts/{workoutId}/exercises/
 // (GET) As a user, I can get a list of all my exercises for a certain workout
-// http://localhost:9092/api/workouts/{workoutId}/exercises/
-// (PUT) As a user, I can update the exercises for a certain workout
-// http://localhost:9092/api/workouts/{workoutId}/exercises/
-// (DELETE) As a user, I can delete the exercises for a certain workout
-
 // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
 // (GET) As a user, I can get a certain exercise for a certain workout
 // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
