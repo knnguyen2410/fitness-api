@@ -121,8 +121,6 @@ Exercise:
 - http://localhost:9092/api/workouts/{workoutId}/exercises/
 - (GET) As a user, I can get a list of all my exercises for a certain workout
 - http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
-- (GET) As a user, I can get a certain exercise for a certain workout
-- http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
 - (PUT) As a user, I can update a certain exercise for a certain workout
 - http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
 - (DELETE) As a user, I can delete a certain exercise for a certain workout

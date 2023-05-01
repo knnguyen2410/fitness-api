@@ -69,9 +69,6 @@ public class ExerciseService {
         return workout.getExerciseList();
     }
 
-    // (GET) As a user, I can get a certain exercise for a certain workout
-    // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
-
     // (PUT) As a user, I can update a certain exercise for a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
 
