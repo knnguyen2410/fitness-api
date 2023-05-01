@@ -3,7 +3,7 @@
 ### A Spring Boot Mini-Project
 * <a href="#about-the-game">About the API</a>
 * <a href="#technologies-used">Technologies Used</a>
-* <a href="#how-to-play">Installation</a>
+* <a href="#installation">Installation</a>
 * <a href="#features">Features</a>
 * <a href="#diagram">Diagram</a>
 * <a href="#credits">Credits</a>
