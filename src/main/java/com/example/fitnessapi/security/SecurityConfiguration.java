@@ -40,4 +40,24 @@ public class SecurityConfiguration {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    /**
+     * filterChain creates a SecurityFilterChain bean (object) that filters all HTTTP requests to the server.
+     * This method allows us to keep certain endpoints private and others public.
+     * @param http is the incoming HTTP request from a user
+     * @return a new SecurityFilterChain object
+     * @throws Exception if the filter chain has an error
+     */
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{ // accepts a http server request
+        http.authorizeRequests().antMatchers(
+                        "/auth/users/register/",
+                        "/auth/users/login/"
+                ).permitAll()// these are all public urls
+                .anyRequest().authenticated() // other urls need authentication
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // when you log into a server, you need to maintain a session. add this session so that our java springboot knows we're logged in
+                .and().csrf().disable(); // connects front/back end if they're on different servers
+        http.addFilterBefore(authJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class); // added for JWT login
+        return http.build();
+    }
 }
