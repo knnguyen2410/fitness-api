@@ -1,5 +1,6 @@
 package com.example.fitnessapi.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -15,6 +16,12 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
     // logger allows us to save information in server's memory, but not hard drive
     Logger logger = Logger.getLogger(JWTRequestFilter.class.getName());
+
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
+    @Autowired
+    private JWTUtils jwtUtils;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
