@@ -17,7 +17,7 @@ public class UserService {
 // As a user, I can register for an account using my email address, and set a username and password.
 // http://localhost:9092/auth/users/register/
 
-// As a user, I can log into a website using my username and password
+// As a user, I can log into a website using my email and password
 // http://localhost:9092/auth/users/login/
 
 }

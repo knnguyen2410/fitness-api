@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -21,4 +20,19 @@ public class JWTUtils {
     // insert expiration date at runtime
     @Value("${jwt-expiration-ms}")
     private int jwtExpirationMs; // comes from dev properties
+
+    /**
+     * generateJwtToken uses the user's details (email address) to create a jwt token.
+     * This method runs once after the user is authenticated.
+     * @param myUserDetails email address is used
+     * @return a json web token for the user
+     */
+    public String generateJwtToken(MyUserDetails myUserDetails) {
+        return Jwts.builder()
+                .setSubject((myUserDetails.getUsername())) // gets email address only (keep info to a minimum)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)) // ms comes from @value
+                .signWith(SignatureAlgorithm.HS256, jwtSecret) // comes from @value
+                .compact();
+    }
 }
