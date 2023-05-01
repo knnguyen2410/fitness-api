@@ -19,5 +19,5 @@ public class UserService {
 
 // As a user, I can log into a website using my username and password
 // http://localhost:9092/auth/users/login/
-    
+
 }
