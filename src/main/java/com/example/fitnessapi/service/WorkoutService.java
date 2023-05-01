@@ -66,8 +66,29 @@ public class WorkoutService {
         }
     }
 
+    /**
+     * updateWorkouts uses a list of workout objects to update the current workout list.
+     * If the user doesn't have any workouts, throw an exception.
+     * @param workoutObjects is what we want to update the workouts to
+     * @return a list of updated workouts for the logged-in user
+     */
     // (PUT) As a user, I can update all my workouts
     // http://localhost:9092/api/workouts/
+    public List<Workout> updateWorkouts(List<Workout> workoutObjects) {
+        List<Workout> workouts = workoutRepository.findByUserId(WorkoutService.getCurrentLoggedInUser().getId());
+        if (workouts.isEmpty()) {
+            throw new InformationNotFoundException("No workouts found for user id " + WorkoutService.getCurrentLoggedInUser().getId() + ".");
+        } else {
+            for (int i = 0; i < workouts.size(); i++){
+                Workout workout = workouts.get(i);
+                Workout workoutObject = workoutObjects.get(i);
+                workout.setName(workoutObject.getName());
+                workout.setDescription(workoutObject.getDescription());
+                workout.setLength(workoutObject.getLength());
+            }
+           return workoutRepository.saveAll(workouts);
+        }
+    }
 
     // (DELETE) As a user, I can delete all my workouts
     // http://localhost:9092/api/workouts/
@@ -106,7 +127,6 @@ public class WorkoutService {
             workout.setName(workoutObject.getName());
             workout.setDescription(workoutObject.getDescription());
             workout.setLength(workoutObject.getLength());
-            workout.setUser(WorkoutService.getCurrentLoggedInUser());
             return workoutRepository.save(workout);
         }
     }

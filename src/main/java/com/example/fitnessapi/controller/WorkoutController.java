@@ -44,8 +44,19 @@ public class WorkoutController {
         return workoutService.getWorkouts();
     }
 
+    /**
+     * updateWorkouts uses the updateWorkouts from workoutService
+     * to get an updated list of all workouts
+     * @param workoutObjects is what we want to update all the workouts to
+     * @return calls upong the updateWorkouts from workoutService
+     */
     // (PUT) As a user, I can update all my workouts
     // http://localhost:9092/api/workouts/
+    @PutMapping(path = "/workouts/")
+    public List<Workout> updateWorkouts (@PathVariable List<Workout> workoutObjects){
+        return workoutService.updateWorkouts(workoutObjects);
+    }
+
 
     // (DELETE) As a user, I can delete all my workouts
     // http://localhost:9092/api/workouts/
