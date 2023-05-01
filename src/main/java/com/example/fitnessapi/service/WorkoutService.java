@@ -23,5 +23,4 @@ public class WorkoutService {
 // (PUT) As a user, I can update a certain category
 // http://localhost:9092/api/workouts/{workoutId}/
 // (DELETE) As a user, I can delete a certain workout
-
 }
