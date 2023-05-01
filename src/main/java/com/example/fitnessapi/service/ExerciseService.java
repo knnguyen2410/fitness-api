@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class ExerciseService {
@@ -29,7 +30,7 @@ public class ExerciseService {
 
     /**
      * createWorkoutExercise creates a new exercise for a certain workout id.
-     * If the workout doesn't exist, or the exercise already exists, throw an exception
+     * If the workout doesn't exist, or the exercise already exists, throw an exception.
      * @param workoutId is the workout we want to make a new exercise in
      * @param exerciseObject is the exercise we want to make
      * @return the new exercise object
@@ -51,8 +52,22 @@ public class ExerciseService {
         return exerciseRepository.save(exerciseObject);
     }
 
+    /**
+     * getWorkoutExercises returns a list of all exercises for a certain workout.
+     * If the workout doesn't exist throw an exception.
+     * @param workoutId is the workout we want to get all the exercises of
+     * @return a list of exercises
+     */
     // (GET) As a user, I can get a list of all my exercises for a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/exercises/
+    public List<Exercise> getWorkoutExercises(Long workoutId) {
+        Workout workout = workoutRepository.findByIdAndUserId(workoutId, WorkoutService.getCurrentLoggedInUser().getId());
+        if (workout == null) {
+            throw new InformationNotFoundException(
+                    "Workout with id " + workoutId + " does not belong to this user or workout does not exist.");
+        }
+        return workout.getExerciseList();
+    }
 
     // (GET) As a user, I can get a certain exercise for a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
