@@ -2,8 +2,6 @@ package com.example.fitnessapi.repository;
 
 import com.example.fitnessapi.model.Exercise;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -23,8 +21,7 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
      * @param workoutId is what we're filtering the exercises by
      * @return the list of exercises for the workout id
      */
-    @Query("select e from Exercise e join e.workoutList w where w.id = :workoutId")
-    List<Exercise> findByWorkoutId(@Param("workoutId") Long workoutId);
+    List<Exercise> findByWorkoutId(Long workoutId);
 
     /**
      * findByNameAndUserIdAndIdIsNot returns an exercise with a specific name

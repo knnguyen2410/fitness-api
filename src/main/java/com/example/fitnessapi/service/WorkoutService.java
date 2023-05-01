@@ -11,7 +11,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class WorkoutService {
@@ -78,16 +81,19 @@ public class WorkoutService {
         List<Workout> workouts = workoutRepository.findByUserId(WorkoutService.getCurrentLoggedInUser().getId());
         if (workouts.isEmpty()) {
             throw new InformationNotFoundException("No workouts found for user id " + WorkoutService.getCurrentLoggedInUser().getId() + ".");
-        } else {
-            for (int i = 0; i < workouts.size(); i++){
-                Workout workout = workouts.get(i);
-                Workout workoutObject = workoutObjects.get(i);
+        }
+        Map<Long, Workout> workoutMap = workouts.stream().collect(Collectors.toMap(Workout::getId, Function.identity()));
+        for (Workout workoutObject : workoutObjects) {
+            Workout workout = workoutMap.get(workoutObject.getId());
+            if (workout != null) {
                 workout.setName(workoutObject.getName());
                 workout.setDescription(workoutObject.getDescription());
                 workout.setLength(workoutObject.getLength());
+            } else {
+                throw new InformationNotFoundException("Workout with id " + workoutObject.getId() + " not found.");
             }
-           return workoutRepository.saveAll(workouts);
         }
+        return workoutRepository.saveAll(workoutObjects);
     }
 
     /**

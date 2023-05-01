@@ -1,6 +1,8 @@
 package com.example.fitnessapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,12 +33,10 @@ public class Workout {
     @JsonIgnore // don't want user information to be included in workout info
     private User user;
 
-    // Many workouts can have many exercises
-    @ManyToMany
-    @JoinTable(name = "workout_exercise", // creates a joined table
-            joinColumns = @JoinColumn(name = "workout_id"), // grabs foreign key from workout table
-            inverseJoinColumns = @JoinColumn(name = "exercise_id")) // grabs foreign key from exercise table
-    List<Exercise> exerciseList;
+    // One workout can have many exercises
+    @OneToMany(mappedBy = "workout", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Exercise> exerciseList;
 
     // default (no-arg) constructor
     public Workout(){}

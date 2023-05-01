@@ -9,7 +9,6 @@ import com.example.fitnessapi.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +48,7 @@ public class ExerciseService {
             throw new InformationExistException("Exercise with name " + exercise.getName() + " already exists.");
         }
         exerciseObject.setUser(WorkoutService.getCurrentLoggedInUser());
-        exerciseObject.setWorkoutList(Arrays.asList(workout));
+        exerciseObject.setWorkout(workout);
         return exerciseRepository.save(exerciseObject);
     }
 
