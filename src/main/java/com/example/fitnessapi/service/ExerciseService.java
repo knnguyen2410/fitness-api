@@ -102,7 +102,24 @@ public class ExerciseService {
         return exerciseRepository.save(exercise.get());
     }
 
-
+    /**
+     * deleteWorkoutExercise deletes a certain exercise for a specific workout.
+     * If the workout or exercise doesn't exist throw an exception.
+     * @param workoutId is the workout where the exercise is located
+     * @param exerciseId is the exercise we want to delete
+     */
     // (DELETE) As a user, I can delete a certain exercise for a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
+    public void deleteWorkoutExercise(Long workoutId, Long exerciseId) {
+        Workout workout = workoutRepository.findByIdAndUserId(workoutId, WorkoutService.getCurrentLoggedInUser().getId());
+        if (workout == null) {
+            throw new InformationNotFoundException(
+                    "Workout with id " + workoutId + " does not belong to this user or workout does not exist.");
+        }
+        Optional<Exercise> exercise = exerciseRepository.findByWorkoutId(workoutId).stream().filter(p -> p.getId().equals(exerciseId)).findFirst();
+        if (exercise.isEmpty()) {
+            throw new InformationNotFoundException("Exercise with id " + exerciseId + " does not belongs to this user or recipe does not exist.");
+        }
+        exerciseRepository.deleteById(exercise.get().getId());
+    }
 }
