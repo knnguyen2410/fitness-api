@@ -48,7 +48,7 @@ public class WorkoutController {
      * updateWorkouts uses the updateWorkouts from workoutService
      * to get an updated list of all workouts
      * @param workoutObjects is what we want to update all the workouts to
-     * @return calls upong the updateWorkouts from workoutService
+     * @return calls upon the updateWorkouts from workoutService
      */
     // (PUT) As a user, I can update all my workouts
     // http://localhost:9092/api/workouts/

@@ -93,7 +93,7 @@ public class WorkoutService {
     /**
      * deleteWorkouts deletes all workouts for the currently logged-in user.
      * If the user doesn't have any workouts, throw an exception.
-     * @return
+     * @return a message to the user that all workouts have been successfully deleted
      */
     // (DELETE) As a user, I can delete all my workouts
     // http://localhost:9092/api/workouts/

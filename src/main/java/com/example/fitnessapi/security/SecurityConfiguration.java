@@ -49,7 +49,7 @@ public class SecurityConfiguration {
     }
 
     /**
-     * filterChain creates a SecurityFilterChain bean (object) that filters all HTTTP requests to the server.
+     * filterChain creates a SecurityFilterChain bean (object) that filters all HTTP requests to the server.
      * This method allows us to keep certain endpoints private and others public.
      * @param http is the incoming HTTP request from a user
      * @return a new SecurityFilterChain object

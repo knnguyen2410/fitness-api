@@ -74,7 +74,7 @@ public class UserService {
      * ResponseEntity returns a key-value pair (? means object).
      * The loginUser method authenticates the user, grabs user details,
      * generates token, and sends it to our application.
-     * @param loginRequest email and password used to autheticate user
+     * @param loginRequest email and password used to authenticate user
      * @return jwt or error message
      */
     public ResponseEntity<?> loginUser(LoginRequest loginRequest) {

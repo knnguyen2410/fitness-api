@@ -29,13 +29,13 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private JWTUtils jwtUtils;
 
     /**
-     * parseJwt autheticates the json web token.
+     * parseJwt authenticates the json web token.
      * This method is called upon after the user has already been validated.
      * @param request is the jwt to the server
      * @return the jwt key after "bearer "
      */
     private String parseJwt(HttpServletRequest request) {  // the request is what we're sending to the server
-        String headerAuth = request.getHeader("Authorization"); // .getheader is the key-value pair. for example, "Authorization" : "Bearer"
+        String headerAuth = request.getHeader("Authorization"); // .getHeader is the key-value pair. for example, "Authorization" : "Bearer"
         if (StringUtils.hasLength("headerAuth") && headerAuth.startsWith("Bearer")) {
             return headerAuth.substring(7);
         }
@@ -67,7 +67,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                 // load user details from the key
                 UserDetails userDetails = this.myUserDetailsService.loadUserByUsername(username);
                 // authenticate the user, these are the user login details
-                // set username and password authentication token from user user details
+                // set username and password authentication token from user details
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 // build the user token

@@ -19,7 +19,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     /**
-     * This is the method that comes from the UserDetailsService interface"
+     * This is the method that comes from the UserDetailsService interface
      * loadUserByUsername returns a user using the email address, or throws an exception if email address not found
      * @param emailAddress is used to find the user
      * @return the user

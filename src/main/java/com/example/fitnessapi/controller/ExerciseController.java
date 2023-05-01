@@ -2,7 +2,6 @@ package com.example.fitnessapi.controller;
 
 import com.example.fitnessapi.model.Exercise;
 import com.example.fitnessapi.service.ExerciseService;
-import com.example.fitnessapi.service.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +16,10 @@ import java.util.List;
 public class ExerciseController {
 
     public ExerciseService exerciseService;
-    public WorkoutService workoutService;
 
     @Autowired
     public void setExerciseService(ExerciseService exerciseService) {
         this.exerciseService = exerciseService;
-    }
-
-    @Autowired
-    public void setWorkoutService(WorkoutService workoutService) {
-        this.workoutService = workoutService;
     }
 
     /**
