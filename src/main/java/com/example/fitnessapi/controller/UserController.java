@@ -1,7 +1,10 @@
 package com.example.fitnessapi.controller;
 
+import com.example.fitnessapi.model.User;
 import com.example.fitnessapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +19,14 @@ public class UserController {
         this.userService = userService;
     }
 
+    // As a user, I can register for an account using my email address, and set a username and password.
     // http://localhost:9092/auth/users/register/
-// As a user, I can register for an account using my email address, and set a username and password.
-// http://localhost:9092/auth/users/login/
-// As a user, I can log into a website using my username and password
+    @PostMapping(path = "/register/")
+    public User createUser(@RequestBody User userObject){
+        return userService.createUser(userObject);
+    }
+
+    // As a user, I can log into a website using my username and password
+    // http://localhost:9092/auth/users/login/
 
 }
