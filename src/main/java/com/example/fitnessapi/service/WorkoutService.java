@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WorkoutService {
@@ -56,6 +57,14 @@ public class WorkoutService {
 
     // (GET) As a user, I can see a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
+    public Optional<Workout> getWorkout(Long workoutId){
+        Workout workout = workoutRepository.findByIdAndUserId(workoutId, WorkoutService.getCurrentLoggedInUser().getId());
+        if (workout == null) {
+            throw new InformationNotFoundException("Workout with id " + workoutId + " not found.");
+        } else {
+            return Optional.of(workout);
+        }
+    }
 
     // (PUT) As a user, I can update a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/

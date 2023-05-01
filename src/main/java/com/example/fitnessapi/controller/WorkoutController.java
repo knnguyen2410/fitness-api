@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController // this is a rest controller for our rest api
 @RequestMapping(path = "/api/") // this is the designated url path: http://localhost:9092/api/
@@ -32,9 +33,13 @@ public class WorkoutController {
     public List<Workout> getWorkouts(){
         return workoutService.getWorkouts();
     }
-    
+
     // (GET) As a user, I can see a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
+    @GetMapping(path = "/workouts/{workoutId}/")
+    public Optional<Workout> getWorkout(@PathVariable Long workoutId){
+        return workoutService.getWorkout(workoutId);
+    }
 
     // (PUT) As a user, I can update a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
