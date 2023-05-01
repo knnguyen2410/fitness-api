@@ -1,5 +1,6 @@
 package com.example.fitnessapi.service;
 
+import com.example.fitnessapi.exception.InformationExistException;
 import com.example.fitnessapi.model.User;
 import com.example.fitnessapi.repository.UserRepository;
 import com.example.fitnessapi.security.JWTUtils;
@@ -32,8 +33,23 @@ public class UserService {
         this.myUserDetails = myUserDetails;
     }
 
+    /**
+     * createUser takes in a user object and creates a new user.
+     * If the email address in the user object already belongs to a user,
+     * throw an InformationExistException message.
+     * @param userObject used to create a user with a unique email address
+     * @return a new user
+     */
     // As a user, I can register for an account using my email address, and set a username and password.
     // http://localhost:9092/auth/users/register/
+    public User createUser(User userObject) {
+        if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
+            userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
+            return userRepository.save(userObject);
+        } else {
+            throw new InformationExistException("User with the email address" + userObject.getEmailAddress() + " already exists.");
+        }
+    }
 
     // As a user, I can log into a website using my email and password
     // http://localhost:9092/auth/users/login/
