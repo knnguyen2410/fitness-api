@@ -6,7 +6,6 @@ import com.example.fitnessapi.model.User;
 import com.example.fitnessapi.model.Workout;
 import com.example.fitnessapi.repository.WorkoutRepository;
 import com.example.fitnessapi.security.MyUserDetails;
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
