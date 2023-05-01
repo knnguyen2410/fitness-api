@@ -2,6 +2,7 @@ package com.example.fitnessapi.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -22,6 +23,20 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     private JWTUtils jwtUtils;
+
+    /**
+     * parseJwt autheticates the json web token.
+     * This method is called upon after the user has already been validated.
+     * @param request is the jwt to the server
+     * @return the jwt key after "bearer "
+     */
+    private String parseJwt(HttpServletRequest request) {  // the request is what we're sending to the server
+        String headerAuth = request.getHeader("Authorization"); // .getheader is the key-value pair. for example, "Authorization" : "Bearer"
+        if (StringUtils.hasLength("headerAuth") && headerAuth.startsWith("Bearer")) {
+            return headerAuth.substring(7);
+        }
+        return null;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
