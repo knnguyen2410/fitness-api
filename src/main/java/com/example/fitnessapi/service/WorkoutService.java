@@ -6,6 +6,7 @@ import com.example.fitnessapi.model.User;
 import com.example.fitnessapi.model.Workout;
 import com.example.fitnessapi.repository.WorkoutRepository;
 import com.example.fitnessapi.security.MyUserDetails;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -90,14 +91,28 @@ public class WorkoutService {
         }
     }
 
+    /**
+     * deleteWorkouts deletes all workouts for the currently logged-in user.
+     * If the user doesn't have any workouts, throw an exception.
+     * @return
+     */
     // (DELETE) As a user, I can delete all my workouts
     // http://localhost:9092/api/workouts/
+    public String deleteWorkouts() {
+        List<Workout> workouts = workoutRepository.findByUserId(WorkoutService.getCurrentLoggedInUser().getId());
+        if (workouts.isEmpty()) {
+            throw new InformationNotFoundException("No workouts found for user id " + WorkoutService.getCurrentLoggedInUser().getId() + ".");
+        } else {
+            workoutRepository.deleteAll(workouts);
+            return "All workouts for user id " + WorkoutService.getCurrentLoggedInUser().getId() + " have been successfully deleted.";
+        }
+    }
 
     /**
      * getWorkout returns a single workout for the user based on the user id.
      * If the workout id doesn't exist, throw an error.
      * @param workoutId is the workout we're looking for
-     * @return the workout
+     * @return a message to the user that all workouts have been successfully deleted
      */
     // (GET) As a user, I can see a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/

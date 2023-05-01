@@ -53,13 +53,16 @@ public class WorkoutController {
     // (PUT) As a user, I can update all my workouts
     // http://localhost:9092/api/workouts/
     @PutMapping(path = "/workouts/")
-    public List<Workout> updateWorkouts (@PathVariable List<Workout> workoutObjects){
+    public List<Workout> updateWorkouts (@RequestBody List<Workout> workoutObjects){
         return workoutService.updateWorkouts(workoutObjects);
     }
 
-
     // (DELETE) As a user, I can delete all my workouts
     // http://localhost:9092/api/workouts/
+    @DeleteMapping(path = "/workouts/")
+    public String deleteWorkouts (){
+        return workoutService.deleteWorkouts();
+    }
 
     /**
      * getWorkout uses the getWorkout method from workoutService
