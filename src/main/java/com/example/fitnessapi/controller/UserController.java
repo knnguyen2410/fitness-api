@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // this is a rest controller for our rest api
-@RequestMapping(path = "/auth/users/") // this is the designated url path
+@RequestMapping(path = "/auth/users/") // this is the designated url path: http://localhost:9092/auth/users/
 public class UserController {
 
 // http://localhost:9092/auth/users/register/
