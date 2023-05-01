@@ -15,6 +15,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    // As a user, I can register for an account using my email address, and set a username and password.
+    // http://localhost:9092/auth/users/register/
+
+    // As a user, I can log into a website using my email and password
+    // http://localhost:9092/auth/users/login/
+
     /**
      * findUserByEmailAddress returns a user from their email address
      * @param emailAddress is used to find the user
@@ -23,11 +29,4 @@ public class UserService {
     public User findUserByEmailAddress(String emailAddress) {
         return userRepository.findUserByEmailAddress(emailAddress);
     }
-
-// As a user, I can register for an account using my email address, and set a username and password.
-// http://localhost:9092/auth/users/register/
-
-// As a user, I can log into a website using my email and password
-// http://localhost:9092/auth/users/login/
-
 }
