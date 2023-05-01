@@ -13,4 +13,12 @@ public class JWTUtils {
 
     // logger allows us to save information in server's memory, but not hard drive
     Logger logger = Logger.getLogger(JWTUtils.class.getName());
+
+    // insert secret key at runtime
+    @Value("${jwt-secret}")
+    private String jwtSecret; // comes from dev properties
+
+    // insert expiration date at runtime
+    @Value("${jwt-expiration-ms}")
+    private int jwtExpirationMs; // comes from dev properties
 }
