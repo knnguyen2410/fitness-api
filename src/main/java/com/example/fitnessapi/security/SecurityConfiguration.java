@@ -1,4 +1,4 @@
 package com.example.fitnessapi.security;
 
-public class MyUserDetailsService {
+public class SecurityConfiguration {
 }
