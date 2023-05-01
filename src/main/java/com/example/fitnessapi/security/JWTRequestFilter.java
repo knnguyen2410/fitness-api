@@ -1,6 +1,10 @@
 package com.example.fitnessapi.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -38,8 +42,43 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         return null;
     }
 
+    /**
+     * doFilterInternal is a method implemented by OncePerRequestFilter.
+     * This method checks if the jwt key is valid or not null,
+     * then grabs the email address from jwt payload to authenticate the user.
+     * @param request is the HttpServletRequest object
+     * @param response is the HttpServletResponse object
+     * @param filterChain are all the filters we're running on the jwt
+     * @throws ServletException if there's a servlet error
+     * @throws IOException if there's an i/o error (input/output)
+     */
+    // sending our CRUD end request, we're immediately here
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        try {
+            String jwt = parseJwt(request);
+            // check if the jwt key is valid and not null
+            if (jwt != null && jwtUtils.validateJwtToken(jwt)) { // .validateJwtToken is the method we made earlier int he JWTUtils class
+                // grab email address from jwt payload
+                // if valid get user email from the key
+                String username = jwtUtils.getUserNameFromJwtToken(jwt);
+                // find the user details by user email address
+                // load user details from the key
+                UserDetails userDetails = this.myUserDetailsService.loadUserByUsername(username);
+                // authenticate the user, these are the user login details
+                // set username and password authentication token from user user details
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+                // build the user token
+                // build request and get security content
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                // set security context
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } catch (Exception e) {
+            logger.info("Cannot set user authentication");
+        }
+        filterChain.doFilter(request, response);
     }
 }
