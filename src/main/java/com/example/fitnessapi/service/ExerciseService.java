@@ -12,7 +12,7 @@ public class ExerciseService {
     public void setExerciseRepository(ExerciseRepository exerciseRepository) {
         this.exerciseRepository = exerciseRepository;
     }
-    
+
 // http://localhost:9092/api/workouts/{workoutId}/exercises/
 // (POST) As a user, I can create a new exercise in a certain workout
 // http://localhost:9092/api/workouts/{workoutId}/exercises/
