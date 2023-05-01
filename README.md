@@ -98,7 +98,7 @@ User:
 - http://localhost:9092/auth/users/login/
 - As a user, I can log into a website using my username and password
 
-Category:
+Workout:
 - http://localhost:9092/api/workouts/
 - (POST) As a user, I can create a new workout
 - http://localhost:9092/api/workouts/
@@ -110,7 +110,7 @@ Category:
 - http://localhost:9092/api/workouts/{workoutId}/
 - (DELETE) As a user, I can delete a certain workout
 
-Product:
+Exercise:
 - http://localhost:9092/api/workouts/{workoutId}/exercises/
 - (POST) As a user, I can create a new exercise in a certain workout
 - http://localhost:9092/api/workouts/{workoutId}/exercises/
