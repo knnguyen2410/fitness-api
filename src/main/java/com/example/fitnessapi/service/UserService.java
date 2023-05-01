@@ -1,5 +1,7 @@
 package com.example.fitnessapi.service;
 
+import com.example.fitnessapi.exception.InformationExistException;
+import com.example.fitnessapi.model.User;
 import com.example.fitnessapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
