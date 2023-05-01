@@ -43,6 +43,10 @@ public class WorkoutController {
 
     // (PUT) As a user, I can update a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
+    @PutMapping(path = "/workouts/{workoutId}/")
+    public Workout updateWorkout (@PathVariable Long workoutId, @RequestBody Workout workoutObject){
+        return workoutService.updateWorkout(workoutId, workoutObject);
+    }
 
     // (DELETE) As a user, I can delete a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/

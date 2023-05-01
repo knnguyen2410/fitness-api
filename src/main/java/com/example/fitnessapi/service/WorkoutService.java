@@ -68,6 +68,18 @@ public class WorkoutService {
 
     // (PUT) As a user, I can update a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
+    public Workout updateWorkout(Long workoutId, Workout workoutObject) {
+        Workout workout = workoutRepository.findByIdAndUserId(workoutId, WorkoutService.getCurrentLoggedInUser().getId());
+        if (workout == null) {
+            throw new InformationNotFoundException("Workout with id " + workoutId + " not found.");
+        } else {
+            workout.setName(workoutObject.getName());
+            workout.setDescription(workoutObject.getDescription());
+            workout.setLength(workoutObject.getLength());
+            workout.setUser(WorkoutService.getCurrentLoggedInUser());
+            return workoutRepository.save(workout);
+        }
+    }
 
     // (DELETE) As a user, I can delete a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
