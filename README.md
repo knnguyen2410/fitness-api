@@ -166,6 +166,7 @@ However, I couldn't figure out how to implement this once I was creating the exe
 
 If I were to approach this API again, I would like to attempt a many-to-many relationship one more time. 
 I would also give users a profile so that I could implement a one-to-one relationship, and give users the option of making their exercises and workouts public.
+
 ---
 ## Credits
 
