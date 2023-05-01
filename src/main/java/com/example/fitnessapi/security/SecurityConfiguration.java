@@ -3,6 +3,8 @@ package com.example.fitnessapi.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -60,4 +62,21 @@ public class SecurityConfiguration {
         http.addFilterBefore(authJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class); // added for JWT login
         return http.build();
     }
+
+    /**
+     * authenticationManager takes in an AuthenticationConfiguration object,
+     * and returns an AuthenticationManager instance.
+     * An AuthenticationManager can do one of 3 things in its authenticate() method:
+     * 1. Return an Authentication (normally with authenticated=true) if it can verify that the input represents a valid principal
+     * 2. Throw an AuthenticationException if it believes that the input represents an invalid principal
+     * 3. Return null if it cannot decide
+     * @param authConfig tells us how to create the AuthenticationManager
+     * @return an AuthenticationManager instance
+     * @throws Exception if AuthenticationConfiguration object has an error
+     */
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
 }
