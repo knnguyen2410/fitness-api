@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
-
 @RestController // this is a rest controller for our rest api
 @RequestMapping(path = "/api/") // this is the designated url path: http://localhost:9092/api/
 public class ExerciseController {
@@ -80,5 +79,4 @@ public class ExerciseController {
         responseMessage.put("Status", "Exercise with id: " + exerciseId + " was successfully deleted.");
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
-
 }
