@@ -50,4 +50,8 @@ public class WorkoutController {
 
     // (DELETE) As a user, I can delete a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
+    @DeleteMapping(path = "/workouts/{workoutId}/")
+    public String deleteWorkout (@PathVariable Long workoutId){
+        return workoutService.deleteWorkout(workoutId);
+    }
 }

@@ -83,5 +83,13 @@ public class WorkoutService {
 
     // (DELETE) As a user, I can delete a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
-
+    public String deleteWorkout(Long workoutId) {
+        Workout workout = workoutRepository.findByIdAndUserId(workoutId, WorkoutService.getCurrentLoggedInUser().getId());
+        if (workout == null) {
+            throw new InformationNotFoundException("Workout with id " + workoutId + " not found.");
+        } else {
+            workoutRepository.deleteById(workoutId);
+            return "Workout with id " + workoutId + " has been successfully deleted.";
+        }
+    }
 }
