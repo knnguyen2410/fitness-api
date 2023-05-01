@@ -44,6 +44,12 @@ public class WorkoutController {
         return workoutService.getWorkouts();
     }
 
+    // (PUT) As a user, I can update all my workouts
+    // http://localhost:9092/api/workouts/
+
+    // (DELETE) As a user, I can delete all my workouts
+    // http://localhost:9092/api/workouts/
+
     /**
      * getWorkout uses the getWorkout method from workoutService
      * to update a get a user's specific workout

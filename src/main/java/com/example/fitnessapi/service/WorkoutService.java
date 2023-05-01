@@ -66,6 +66,12 @@ public class WorkoutService {
         }
     }
 
+    // (PUT) As a user, I can update all my workouts
+    // http://localhost:9092/api/workouts/
+
+    // (DELETE) As a user, I can delete all my workouts
+    // http://localhost:9092/api/workouts/
+
     /**
      * getWorkout returns a single workout for the user based on the user id.
      * If the workout id doesn't exist, throw an error.

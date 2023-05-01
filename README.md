@@ -103,6 +103,11 @@ Workout:
 - (POST) As a user, I can create a new workout
 - http://localhost:9092/api/workouts/
 - (GET) As a user, I can see a list of all my workouts
+- http://localhost:9092/api/workouts/
+- (PUT) As a user, I can update all my workouts
+- http://localhost:9092/api/workouts/
+- (DELETE) As a user, I can delete all my workouts
+
 - http://localhost:9092/api/workouts/{workoutId}/
 - (GET) As a user, I can see a certain workout
 - http://localhost:9092/api/workouts/{workoutId}/
