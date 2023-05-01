@@ -33,6 +33,9 @@ public class UserService {
         this.myUserDetails = myUserDetails;
     }
 
+    // As a user, I can register for an account using my email address, and set a username and password.
+    // http://localhost:9092/auth/users/register/
+    
     /**
      * createUser takes in a user object and creates a new user.
      * If the email address in the user object already belongs to a user,
@@ -40,8 +43,6 @@ public class UserService {
      * @param userObject used to create a user with a unique email address
      * @return a new user
      */
-    // As a user, I can register for an account using my email address, and set a username and password.
-    // http://localhost:9092/auth/users/register/
     public User createUser(User userObject) {
         if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
             userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
@@ -51,9 +52,6 @@ public class UserService {
         }
     }
 
-    // As a user, I can log into a website using my email and password
-    // http://localhost:9092/auth/users/login/
-
     /**
      * findUserByEmailAddress returns a user from their email address
      * @param emailAddress is used to find the user
@@ -62,4 +60,9 @@ public class UserService {
     public User findUserByEmailAddress(String emailAddress) {
         return userRepository.findUserByEmailAddress(emailAddress);
     }
+
+    // As a user, I can log into a website using my email and password
+    // http://localhost:9092/auth/users/login/
+
+
 }
