@@ -6,6 +6,8 @@ import com.example.fitnessapi.service.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController // this is a rest controller for our rest api
 @RequestMapping(path = "/api/") // this is the designated url path: http://localhost:9092/api/
 public class WorkoutController {
@@ -23,10 +25,14 @@ public class WorkoutController {
     public Workout createWorkout(@RequestBody Workout workoutObject){
         return workoutService.createWorkout(workoutObject);
     }
-    
+
     // (GET) As a user, I can see a list of all my workouts
     // http://localhost:9092/api/workouts/
-
+    @GetMapping(path = "/workouts/")
+    public List<Workout> getWorkouts(){
+        return workoutService.getWorkouts();
+    }
+    
     // (GET) As a user, I can see a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
 

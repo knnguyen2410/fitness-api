@@ -1,6 +1,7 @@
 package com.example.fitnessapi.service;
 
 import com.example.fitnessapi.exception.InformationExistException;
+import com.example.fitnessapi.exception.InformationNotFoundException;
 import com.example.fitnessapi.model.User;
 import com.example.fitnessapi.model.Workout;
 import com.example.fitnessapi.repository.WorkoutRepository;
@@ -8,6 +9,8 @@ import com.example.fitnessapi.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WorkoutService {
@@ -42,6 +45,14 @@ public class WorkoutService {
 
     // (GET) As a user, I can see a list of all my workouts
     // http://localhost:9092/api/workouts/
+    public List<Workout> getWorkouts(){
+        List<Workout> workouts = workoutRepository.findByUserId(WorkoutService.getCurrentLoggedInUser().getId());
+        if (workouts.isEmpty()) {
+            throw new InformationNotFoundException("No workouts found for user id " + WorkoutService.getCurrentLoggedInUser().getId() + ".");
+        } else {
+            return workouts;
+        }
+    }
 
     // (GET) As a user, I can see a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/
