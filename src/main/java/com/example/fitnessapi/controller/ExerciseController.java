@@ -41,10 +41,10 @@ public class ExerciseController {
     }
 
     /**
-     * getWorkoutExercises uses the getWorkoutExercises from the exerciseService
+     * getWorkoutExercises uses the getWorkoutExercises method from the exerciseService
      * to get a list of all exercises for a certain workout.
      * @param workoutId is the workout we want to get all the exercises of
-     * @return cals upon the getWorkoutExercises in the exerciseService
+     * @return calls upon the getWorkoutExercises in the exerciseService
      */
     // (GET) As a user, I can get a list of all my exercises for a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/exercises/
@@ -53,9 +53,21 @@ public class ExerciseController {
         return exerciseService.getWorkoutExercises(workoutId);
     }
 
+    /**
+     * updateWorkoutExercise uses the updateWorkoutExercise method from the exercise service
+     * to update a certain exercise for a certain workout.
+     * @param workoutId the workout we want to update
+     * @param exerciseId the exercise we want to update
+     * @param exerciseObject what we want the exercise to update to
+     * @return calls upon the updateWorkoutExercise in the exercise Service
+     */
     // (PUT) As a user, I can update a certain exercise for a certain workout
-    // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
+    // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}/
+    @PutMapping(path = "/workouts/{workoutId}/exercises/{exerciseId}/")
+    public Exercise updateWorkoutExercise (@PathVariable Long workoutId, @PathVariable Long exerciseId, @RequestBody Exercise exerciseObject){
+        return exerciseService.updateWorkoutExercise(workoutId, exerciseId, exerciseObject);
+    }
 
     // (DELETE) As a user, I can delete a certain exercise for a certain workout
-    // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
+    // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}/
 }

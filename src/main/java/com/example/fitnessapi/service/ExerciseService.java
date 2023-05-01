@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExerciseService {
@@ -69,8 +70,38 @@ public class ExerciseService {
         return workout.getExerciseList();
     }
 
+    /**
+     * updateWorkoutExercise returns an updated exercise for a certain workout.
+     * If the workout or exercise doesn't exist throw an exception.
+     * @param workoutId the workout we want to update
+     * @param exerciseId the exercise we want to update
+     * @param exerciseObject what we want the exercise to update to
+     * @return the updated exercise
+     */
     // (PUT) As a user, I can update a certain exercise for a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
+    public Exercise updateWorkoutExercise(Long workoutId, Long exerciseId, Exercise exerciseObject) {
+        Workout workout = workoutRepository.findByIdAndUserId(workoutId, WorkoutService.getCurrentLoggedInUser().getId());
+        if (workout == null) {
+            throw new InformationNotFoundException(
+                    "Workout with id " + workoutId + " does not belong to this user or workout does not exist.");
+        }
+        Optional<Exercise> exercise = exerciseRepository.findByWorkoutId(workoutId).stream().filter(p -> p.getId().equals(exerciseId)).findFirst();
+        if (exercise.isEmpty()) {
+            throw new InformationNotFoundException("Exercise with id " + exerciseId + " does not belongs to this user or exercise does not exist.");
+        }
+        Exercise oldExercise = exerciseRepository.findByNameAndUserIdAndIdIsNot(exerciseObject.getName(), WorkoutService.getCurrentLoggedInUser().getId(), exerciseId);
+        if (oldExercise != null) {
+            throw new InformationExistException("Exercise with name " + oldExercise.getName() + " already exists.");
+        }
+        exercise.get().setName(exerciseObject.getName());
+        exercise.get().setDescription(exerciseObject.getDescription());
+        exercise.get().setSets(exerciseObject.getSets());
+        exercise.get().setReps(exerciseObject.getReps());
+        exercise.get().setDuration(exerciseObject.getDuration());
+        return exerciseRepository.save(exercise.get());
+    }
+
 
     // (DELETE) As a user, I can delete a certain exercise for a certain workout
     // http://localhost:9092/api/workouts/{workoutId}/exercises/{exerciseId}
